@@ -1,7 +1,8 @@
 #! /usr/bin/ruby
 # $ sudo gem install sqlite3-ruby
 
-maindb = File.expand_path('~/Library/Application Support/Skype/(Skypeアカウント)/main.db')
+maindb_original = File.expand_path('~/Library/Application Support/Skype/(Skypeアカウント)/main.db')
+maindb = File.expand_path('~/.skype2mail.main.db')
 last_filename = File.expand_path('~/.skype2mail.last')
 max_days = 10
 max_entries = 200
@@ -17,8 +18,12 @@ require 'rubygems'
 require 'sqlite3'
 require 'net/smtp'
 require 'nkf'
+require 'fileutils'
 
 include SQLite3
+
+# workdb
+FileUtils.copy(maindb_original, maindb)
 
 # load last timestamp
 from = 0
