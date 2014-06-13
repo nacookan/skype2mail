@@ -89,7 +89,7 @@ keys.uniq.sort.each do |date|
     list.each_index do |index|
       item = list[index]
       subject = "[skype] #{chat} #{date}" + (2 <= list.length ? " (#{index + 1}/#{list.length})" : "")
-      subject_encoded = NKF.nkf('-M', subject)
+      subject_encoded = NKF.nkf('-M -j', subject)
       body =
         "<h1 style=\"margin: 0 0 1em 0; padding: 0.5em; background: #00aff1; color: #ffffff; font-size: 150%;\">" +
         subject +
